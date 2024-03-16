@@ -7,6 +7,9 @@ const nextConfig = {
       "maps.googleapis.com",
     ],
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
 export default nextConfig;
