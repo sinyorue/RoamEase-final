@@ -8,51 +8,6 @@ import { auth } from "@clerk/nextjs";
 import { getEmbedding } from "@/lib/openai";
 import { notesIndex } from "@/lib/db/pinecone";
 
-export async function POST(req: Request) {
-  try {
-    const body = await req.json();
-
-    const parseResults = await createNoteSchema.safeParse(body);
-
-    if (!parseResults.success) {
-      console.error(parseResults.error);
-      return Response.json({ error: "invalid input" }), { status: 400 };
-    }
-
-    const { title, content } = parseResults.data;
-
-    const { userId } = auth();
-
-    if (!userId) {
-      return Response.json({ error: "unauthorized" }, { status: 401 });
-    }
-
-    const embedding = await getEmbeddingForNote(title, content);
-
-    const note = await prisma.$transaction(async (tx) => {
-      const note = await tx.note.create({
-        data: {
-          title,
-          content,
-          userId,
-        },
-      });
-      await notesIndex.upsert([
-        {
-          id: note.id,
-          values: embedding,
-          metadata: { userId },
-        },
-      ]);
-      return note;
-    });
-
-    return Response.json({ note });
-  } catch (error) {
-    console.log(error);
-    return Response.json({ error: "internal server error" }, { status: 500 });
-  }
-}
 export async function PUT(req: Request) {
   try {
     const body = await req.json();
@@ -61,7 +16,9 @@ export async function PUT(req: Request) {
 
     if (!parseResults.success) {
       console.error(parseResults.error);
-      return Response.json({ error: "invalid input" }), { status: 400 };
+      return new Response(JSON.stringify({ error: "invalid input" }), {
+        status: 400,
+      });
     }
 
     const { id, title, content } = parseResults.data;
@@ -111,7 +68,7 @@ export async function DELETE(req: Request) {
 
     if (!parseResults.success) {
       console.error(parseResults.error);
-      return Response.json({ error: "invalid input" }), { status: 400 };
+      return Response.json({ error: "invalid input" }, { status: 400 });
     }
 
     const { id } = parseResults.data;
