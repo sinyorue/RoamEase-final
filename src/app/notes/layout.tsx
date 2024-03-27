@@ -1,5 +1,9 @@
 import HopeNV from "./hope";
 
+/**
+ * Default layout component.
+ * Wraps the page content in a header, footer, and centers content.
+ */
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>

@@ -2,6 +2,10 @@ import prisma from "@/lib/db/prisma";
 import { auth } from "@clerk/nextjs";
 import Note from "@/components/Note";
 
+/**
+ * Fetches all notes for the authenticated user and renders them.
+ * If the user has no notes, renders a message.
+ */
 export default async function NavBar() {
   const { userId } = auth();
 

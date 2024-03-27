@@ -5,6 +5,15 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs";
 
+/**
+ * Renders the home page.
+ *
+ * If the user is authenticated, redirects to the /search page.
+ * Otherwise, renders the home page with:
+ * - Logo and title
+ * - Description text
+ * - Navigation buttons to the /maps, /search, and /notes pages
+ */
 export default function Home() {
   const { userId } = auth();
 

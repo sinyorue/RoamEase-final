@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 @layer base {
+  /**
+   * Defines CSS custom properties (variables) for colors used throughout the app.
+   * Includes primary, secondary, muted, destructive, etc. color variants.
+   * Also defines CSS custom properties for radii, borders, etc.
+   */
   :root {
     --background: 0 0% 100%;
     --foreground: 20 14.3% 4.1%;
@@ -26,6 +31,10 @@
     --radius: 0.5rem;
   }
 
+  /**
+   * Defines CSS custom properties for dark mode colors used throughout the app.
+   * Includes variants for background, foreground, primary, secondary, etc.
+   */
   .dark {
     --background: 20 14.3% 4.1%;
     --foreground: 60 9.1% 97.8%;

@@ -12,6 +12,13 @@ import { dark } from "@clerk/themes";
 import { useTheme } from "next-themes";
 import AIChatButton from "@/components/AIChatButton";
 
+/**
+ * Renders the main app UI with header, buttons, and add note dialog.
+ * - Uses Clerk for authentication.
+ * - Has buttons to navigate to different pages.
+ * - Shows add note dialog when add button clicked.
+ * - Has theme toggle button.
+ */
 export default function HopeNV() {
   const { theme } = useTheme();
   const [showAddEditNoteDialog, setShowAddEditNoteDialog] = useState(false);

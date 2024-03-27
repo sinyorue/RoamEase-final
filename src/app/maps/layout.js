@@ -6,6 +6,10 @@ import { useEffect, useState } from "react";
 import { UserLocationContext } from "@/context/UserLocationContext";
 import { SelectedBusinessContext } from "@/context/SelectedBusinessContext";
 
+/**
+ * Layout component that handles user location state and selected business state via context providers.
+ * Renders main content wrapped in context providers.
+ */
 export default function Layout({ children }) {
   const [userLocation, setUserLocation] = useState([]);
   const [selectedBusiness, setSelectedBusiness] = useState([]);

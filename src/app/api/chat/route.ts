@@ -5,6 +5,15 @@ import { auth } from "@clerk/nextjs";
 import { ChatCompletionMessage } from "openai/resources/index.mjs";
 import { OpenAIStream, StreamingTextResponse } from "ai";
 
+/**
+ * Handles a POST request to the chat API route.
+ *
+ * Receives chat messages in the request body, queries Pinecone
+ * for relevant notes using the message embedding, retrieves
+ * the notes from the database, constructs a system message
+ * with the notes, sends the messages to OpenAI for completion,
+ * and returns the OpenAI response as a stream.
+ */
 export async function POST(req: Request) {
   try {
     const body = await req.json();

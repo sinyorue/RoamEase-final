@@ -7,7 +7,6 @@ import RangeSelect from "@/components/Home/RangeSelect";
 import SelectRating from "@/components/Home/SelectRating";
 import SkeltonLoading from "@/components/SkeltonLoading";
 import { UserLocationContext } from "@/context/UserLocationContext";
-
 import {
   ResizableHandle,
   ResizablePanel,
@@ -20,6 +19,14 @@ import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 import HeaderNavBar from "../../components/HeaderNavBar";
 
+/**
+ * Home page component.
+ *
+ * Displays a map, business list, category filter, radius filter
+ * and rating filter. Fetches businesses from Google Places API
+ * based on selected filters and user location. Handles loading
+ * and error states.
+ */
 export default function Home() {
   const [category, setCategory] = useState();
   const [radius, setRadius] = useState(2500);

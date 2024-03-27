@@ -12,6 +12,10 @@ import { dark } from "@clerk/themes";
 import { useTheme } from "next-themes";
 import AIChatButton from "@/components/AIChatButton";
 
+/**
+ * Renders the main app UI with header, buttons for navigation,
+ * and dialog to add plans.
+ */
 export default function HopeNV() {
   const { theme } = useTheme();
   const [showAddEditNoteDialog, setShowAddEditNoteDialog] = useState(false);

@@ -11,6 +11,18 @@ interface AIChatBoxProps {
   open: boolean;
   onClose: () => void;
 }
+/**
+ * Renders a chatbox UI with AI chat functionality.
+ *
+ * Props:
+ * - open: Whether the chatbox is open.
+ * - onClose: Callback when the close button is clicked.
+ *
+ * Shows a chat UI with messages, input, and submit.
+ * Uses useChat hook to handle messaging with AI.
+ * Autoscrolls when new messages arrive.
+ * Focuses input on open.
+ */
 export default function AIChatBox(props: AIChatBoxProps) {
   const {
     messages,

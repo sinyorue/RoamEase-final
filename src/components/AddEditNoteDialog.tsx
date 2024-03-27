@@ -24,6 +24,13 @@ import { set } from "zod";
 import { Note } from "@prisma/client";
 import { useState } from "react";
 
+/**
+ * Props for the AddEditNoteDialog component.
+ *
+ * open: Whether the dialog is open.
+ * setOpen: Callback to update open state.
+ * noteToEdit: Optional note being edited.
+ */
 interface AddEditNoteDialogProps {
   open: boolean;
   setOpen: (open: boolean) => void;
@@ -38,6 +45,10 @@ export default function AddEditNoteDialog({
   const [deleteInProgress, setDeleteInProgress] = useState(false);
   const router = useRouter();
 
+  /**
+   * Initialize the form state with the zod resolver and default values.
+   * If noteToEdit is provided, default to its title and content.
+   */
   const form = useForm<CreateNoteSchema>({
     resolver: zodResolver(createNoteSchema),
     defaultValues: {
@@ -46,6 +57,11 @@ export default function AddEditNoteDialog({
     },
   });
 
+  /**
+   * Submits the form data to the API to create or update a note.
+   * On success, refreshes the router and closes the dialog.
+   * On failure, displays an error alert.
+   */
   async function onSubmit(input: CreateNoteSchema) {
     try {
       if (noteToEdit) {
@@ -74,6 +90,13 @@ export default function AddEditNoteDialog({
       alert("Something went wrong please try again later");
     }
   }
+  /**
+   * Deletes the note being edited.
+   * Sets deleteInProgress to true, makes a DELETE request to the API,
+   * and refreshes the router on success.
+   * Handles errors by logging to console and showing alert.
+   * Finally sets deleteInProgress back to false.
+   */
   async function deleteNote() {
     if (!noteToEdit) return;
     setDeleteInProgress(true);
@@ -95,6 +118,15 @@ export default function AddEditNoteDialog({
     }
   }
 
+  /**
+   * Renders a dialog containing a form to add or edit a note.
+   * The dialog is opened/closed based on the `open` prop.
+   * The form handles submitting to add a new note or update an existing one based on if
+   * `noteToEdit` is passed.
+   * Deleting notes is also handled if `noteToEdit` is present.
+   * Form submission is wrapped in try/catch to handle errors.
+   * The router is refreshed on successful submit or delete.
+   */
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent>

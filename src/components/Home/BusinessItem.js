@@ -83,6 +83,14 @@ function BusinessItem({ business, showDir = false }) {
     );
   };
 
+  /**
+   * Renders a business card component with business details and actions.
+   *
+   * Displays business name, address, rating, distance from user if available.
+   * Provides get directions button to navigate to business location.
+   *
+   * Card appearance updates on hover.
+   */
   return (
     <Card
       className="mb-1 mt-[20px] w-[195px]
