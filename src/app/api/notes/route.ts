@@ -8,6 +8,7 @@ import { auth } from "@clerk/nextjs";
 import { getEmbedding } from "@/lib/openai";
 import { notesIndex } from "@/lib/db/pinecone";
 
+<<<<<<< HEAD
 /**
  * Updates a note by ID.
  *
@@ -18,6 +19,8 @@ import { notesIndex } from "@/lib/db/pinecone";
  *
  * Returns 200 if successful, or an error status code.
  */
+=======
+>>>>>>> 1d8271717b77fc9c048ad1a983a886a83658c4f8
 export async function PUT(req: Request) {
   try {
     const body = await req.json();
